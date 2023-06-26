@@ -1,0 +1,137 @@
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.teal, Colors.deepPurple],
+        ),
+      ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Registration Page'),
+          backgroundColor: Colors.black12,
+        ),
+        body: Center(
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      //controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        hintText: "Please enter your new email address",
+                        prefixIcon: Icon(Icons.mail, color: Colors.black),
+                      ),
+                      // validator: (value) {
+                      //   if (value == null || value.isEmpty) {
+                      //     return 'Please enter your email address';
+                      //   }
+                      //   if (!isValidEmail(value)) {
+                      //     return 'Please enter a valid email address';
+                      //   }
+                      //   return null;
+                      // },
+                      textInputAction: TextInputAction.next,
+                      onFieldSubmitted: (_) {
+                        setState(() {
+                          _isEmailValid = _formKey.currentState!.validate();
+                        });
+                        if (_isEmailValid) {
+                          FocusScope.of(context).nextFocus();
+                        }
+                      },
+                    ) , //EMAIL TEXT FIELD
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const SizedBox(height: 10.0),
+                    TextFormField(
+                    //  controller: _passwordController,
+                      keyboardType: TextInputType.text,
+                      obscureText: true,
+                      enabled: _isEmailValid,
+                      decoration: InputDecoration(
+                        hintText: "Please enter your password",
+                        prefixIcon: const Icon(Icons.lock, color: Colors.black),
+                        enabledBorder: _isEmailValid
+                            ? null
+                            : OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (_isEmailValid) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          // Add additional password validation if needed
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                TextFormField(
+                  //  controller: _passwordController,
+                  keyboardType: TextInputType.text,
+                  obscureText: true,
+                  enabled: _isEmailValid,
+                  decoration: InputDecoration(
+                    hintText: "Confirm Your Password",
+                    prefixIcon: const Icon(Icons.lock, color: Colors.black),
+                    enabledBorder: _isEmailValid
+                        ? null
+                        : OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (_isEmailValid) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      // Add additional password validation if needed
+                    }
+                    return null;
+                  },
+                ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          // Perform registration or login logic here
+                          // using the entered email and password
+                        }
+                      },
+                      child: const Text('Register'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  bool _validateEmailFormat(String email) {
+    final RegExp emailRegex = RegExp(
+      r'^[\w-]+(\.[\w-]+)*@[a-zA-Z\d-]+(\.[a-zA-Z\d-]+)*\.[a-zA-Z\d-]{2,}$',
+    );
+    return emailRegex.hasMatch(email);
+  }
+}
