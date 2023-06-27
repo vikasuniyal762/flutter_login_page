@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'RegistrationLog.dart';
 
 void main() {
@@ -15,6 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.black12,
+          elevation: 0,
         ),
       ),
       debugShowCheckedModeBanner: false,
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Colors.teal, Colors.deepPurple],
+          colors: [Colors.lightGreen, Colors.deepPurple],
         ),
       ),
       child: Scaffold(
@@ -207,10 +207,11 @@ class _LoginPageState extends State<LoginPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0),
                 ),
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     // Form is valid, perform login operation
                     // You can access the email and password using _emailController.text and _passwordController.text respectively
+                    await performLogin();
                   }
                 },
                 child: const Text(
@@ -226,6 +227,14 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future<void> performLogin() async {
+    // Your login logic goes here
+    final email = _emailController.text;
+    final password = _passwordController.text;
+
+    // Perform the login operation using the email and password
   }
 }
 
