@@ -70,7 +70,7 @@ class _RegistrationLogState extends State<RegistrationLog> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   const Text(
@@ -110,7 +110,7 @@ class _RegistrationLogState extends State<RegistrationLog> {
                     },
                     decoration: InputDecoration(
                       hintText: "Please enter your password",
-                      prefixIcon: Icon(Icons.lock, color: Colors.black),
+                      prefixIcon: const Icon(Icons.lock, color: Colors.black),
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -150,7 +150,7 @@ class _RegistrationLogState extends State<RegistrationLog> {
                     },
                     enabled: isPasswordFieldEnabled,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     getPasswordStrengthText(),
                     style: TextStyle(
@@ -159,7 +159,7 @@ class _RegistrationLogState extends State<RegistrationLog> {
                     ),
                   ),
                   const SizedBox(height: 40.0),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: RawMaterialButton(
                       fillColor: const Color(0xFF0069FE),

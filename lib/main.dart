@@ -12,14 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black12,
           elevation: 0,
         ),
       ),
       debugShowCheckedModeBanner: false,
       title: '',
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
@@ -45,14 +45,14 @@ class HomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                LoginPage(),
+                const LoginPage(),
                 const SizedBox(height: 20.0),
                 TextButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RegistrationLog(),
+                        builder: (context) => const RegistrationLog(),
                       ),
                     );
                   },
@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             const Text(
@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                 prefixIcon: const Icon(Icons.lock, color: Colors.black),
                 enabledBorder: _isEmailValid
                     ? null
-                    : OutlineInputBorder(
+                    : const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey),
                 ),
               ),
@@ -198,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
               contentPadding: EdgeInsets.zero,
             ),
             const SizedBox(height: 50.0),
-            Container(
+            SizedBox(
               width: double.infinity,
               child: RawMaterialButton(
                 fillColor: const Color(0xFF0069FE),
